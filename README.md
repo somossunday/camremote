@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="iphone-cam-remote/design/icons/final/ios-cam-1024.png" width="120" alt="CamRemote iPhone">
+  <img src="iphone-cam-remote/design/icons/final/macos-mac-1024.png" width="140" alt="CamRemote Mac">
+  <img src="iphone-cam-remote/design/icons/final/macos-color-1024.png" width="140" alt="CamRemote Color">
+</p>
+
 # CamRemote
 
 Apps propias para grabar con el iPhone controlado desde el Mac y etalonar luego los vídeos. No se publican en la App Store.
