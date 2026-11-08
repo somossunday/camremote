@@ -1,0 +1,92 @@
+name: CamRemote
+options:
+  bundleIdPrefix: com.adrianmillares.camremote
+  deploymentTarget:
+    iOS: "26.0"
+    macOS: "15.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: Z8GY99W9QQ
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  CamRemoteCam:
+    type: application
+    platform: iOS
+    sources: [Shared, iOS]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.adrianmillares.camremote.camera
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_NAME: CamRemote
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: iOS/Info.plist
+      properties:
+        CFBundleDisplayName: CamRemote
+        UIFileSharingEnabled: true
+        UIBackgroundModes:
+          - audio
+          - voip
+        LSSupportsOpeningDocumentsInPlace: true
+        UILaunchScreen: {}
+        UIRequiresFullScreen: true
+        UIStatusBarHidden: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSCameraUsageDescription: CamRemote usa la cámara para grabar vídeo controlado desde tu Mac.
+        NSMicrophoneUsageDescription: CamRemote graba el sonido junto con el vídeo.
+        NSPhotoLibraryAddUsageDescription: Los vídeos grabados se guardan en tu fototeca.
+        NSLocalNetworkUsageDescription: CamRemote se comunica con tu Mac por la red local para que lo controles sin cables.
+        NSBonjourServices:
+          - _camremote._tcp
+  CamRemoteHelper:
+    type: application
+    platform: macOS
+    sources: [macOS-helper]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.adrianmillares.camremote.mac.helper
+        PRODUCT_NAME: CamRemote Helper
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+    info:
+      path: macOS-helper/Info.plist
+      properties:
+        CFBundleDisplayName: CamRemote Helper
+        LSUIElement: true
+        LSBackgroundOnly: true
+        NSLocalNetworkUsageDescription: CamRemote detecta tu iPhone en la red local para abrirse cuando lo uses.
+        NSBonjourServices:
+          - _camremote._tcp
+  CamRemoteMac:
+    type: application
+    platform: macOS
+    sources: [Shared, macOS]
+    dependencies:
+      - target: CamRemoteHelper
+        embed: true
+        codeSign: true
+        copy:
+          destination: wrapper
+          subpath: Contents/Library/LoginItems
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.adrianmillares.camremote.mac
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_NAME: CamRemote
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: macOS/Info.plist
+      properties:
+        CFBundleDisplayName: CamRemote
+        LSApplicationCategoryType: public.app-category.video
+        NSSupportsSuddenTermination: false
+        NSLocalNetworkUsageDescription: CamRemote busca y controla tu iPhone por la red local.
+        NSBonjourServices:
+          - _camremote._tcp

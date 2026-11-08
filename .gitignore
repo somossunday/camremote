@@ -1,0 +1,20 @@
+# Compilaciones
+build/
+DerivedData/
+*.xcarchive
+*.ipa
+
+# Proyectos de Xcode: los genera XcodeGen a partir de project.yml
+*.xcodeproj/
+
+# Xcode / usuario
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+
+# Secretos
+*.env
+.env*

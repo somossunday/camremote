@@ -1,0 +1,36 @@
+name: CamRemoteEditor
+options:
+  bundleIdPrefix: com.adrianmillares.camremote
+  deploymentTarget:
+    macOS: "15.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    DEVELOPMENT_TEAM: Z8GY99W9QQ
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  CamRemoteEditor:
+    type: application
+    platform: macOS
+    sources: [Editor]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.adrianmillares.camremote.editor
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_NAME: CamRemote Color
+        GENERATE_INFOPLIST_FILE: NO
+        ENABLE_HARDENED_RUNTIME: YES
+    info:
+      path: Editor/Info.plist
+      properties:
+        CFBundleDisplayName: CamRemote Color
+        LSApplicationCategoryType: public.app-category.video
+        NSHumanReadableCopyright: ""
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Vídeo
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.movie, com.apple.quicktime-movie, public.mpeg-4]
